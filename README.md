@@ -1,2 +1,4 @@
-# animator-classic
-old java animation library written in early 2021
+# animator
+A Java library for animating numeric values
+
+Soon to be open sourced
