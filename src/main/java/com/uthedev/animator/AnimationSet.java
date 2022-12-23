@@ -70,7 +70,7 @@ public class AnimationSet<T> extends AnimBase {
 	 * @param start   The starting value.
 	 * @param end     The ending value.
 	 * @param updater The OnStep abstract class that provides an update method
-	 *                for the value. See {@link Listeners.OnStep}.
+	 *                for the value. See {@link OnStep}.
 	 */
 	public void newValue(T index, double start, double end, OnStep updater) {
 		ArrayList<Double> valEnds = new ArrayList<Double>();
