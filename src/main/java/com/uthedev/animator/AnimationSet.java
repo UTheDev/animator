@@ -14,7 +14,7 @@ import com.uthedev.animator.signals.OnStep;
  * <p>
  * 0 = Start | 1 = End
  * 
- * @param <T> The type of the animation set index.
+ * @param <T> The data type of the HashMap keys used by an instance of AnimationSet
  */
 public class AnimationSet<T> extends AnimBase {
 	private HashMap<T, ArrayList<Double>> valueEnds = new HashMap<T, ArrayList<Double>>();
@@ -22,7 +22,10 @@ public class AnimationSet<T> extends AnimBase {
 	private HashMap<T, Double> values = new HashMap<T, Double>();
 
 	private Animator setAnimator;
-
+	
+	/**
+	 * Runs the numeric animations currently added to the AnimationSet instance
+	 */
 	protected void runAnimation() {
 		if (info != null && setAnimator != null) {
 
@@ -72,7 +75,7 @@ public class AnimationSet<T> extends AnimBase {
 	 * @param updater The OnStep abstract class that provides an update method
 	 *                for the value. See {@link OnStep}.
 	 */
-	public void newValue(T index, double start, double end, OnStep updater) {
+	public void addValue(T index, double start, double end, OnStep updater) {
 		ArrayList<Double> valEnds = new ArrayList<Double>();
 		valEnds.add(0, start);
 		valEnds.add(1, end);
@@ -155,7 +158,7 @@ public class AnimationSet<T> extends AnimBase {
 			T fromKey = i.getKey();
 			Double destValue = to.get(fromKey);
 			if (destValue != null) {
-				newValue(fromKey, i.getValue(), destValue, null);
+				addValue(fromKey, i.getValue(), destValue, null);
 			}
 		}
 	}
