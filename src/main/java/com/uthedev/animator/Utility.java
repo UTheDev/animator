@@ -67,10 +67,10 @@ public interface Utility {
 
 		switch(styleRequest) {
 			case LINEAR:
-			return Lerp.linear(start, end , time);
+			return OldLerp.linear(start, end , time);
 
 			case SQUARE:
-			return Lerp.square(start, end, time, info.direction);
+			return OldLerp.square(start, end, time, info.direction);
 
 			default:
 			return 0;

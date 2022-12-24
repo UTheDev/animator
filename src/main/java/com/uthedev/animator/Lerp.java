@@ -1,92 +1,159 @@
 package com.uthedev.animator;
 
 /**
- * General use interface for interpolation.
+ * This is the base class for numeric interpolation based on easing styles such
+ * as linear and square.
  * 
  * @author UTheDev
+ *
  */
-public interface Lerp {
-	
+public class Lerp {
 	/**
-	 * The base interpolation method (this is used for every other to avoid calculus lol).
-	 * @param start The starting position
-	 * @param end The ending position.
-	 * @param time The time position.
-	 * @return The result.
+	 * Performs linear interpolation between 2 numbers.
+	 * This method is intended to be built upon by subclasses of Lerp
+	 * as many easing style algorithms are based on linear interpolation.
+	 * 
+	 * @param start The starting value
+	 * @param end The ending value
+	 * @param time The interpolation time
+	 * @return The calculated result based on the interpolation parameters
 	 */
-	static double linear(double start, double end, double time) {
-		return start + (end - start) * time; //(1 - time) * start + time * end;
-	}
-	
-	public abstract class EaseFunc {
-		public abstract double calc(double time);
-	}
-	
-	public class EaseHandle {
-		public EaseFunc func;
-		
-		public double convert(EasingDirection direction, double time) {
-			if (direction != null) {
-				if (func != null) {
-					switch(direction) {
-					case IN:
-						return func.calc(time);
-					case IN_OUT:
-						return linear(convert(EasingDirection.IN, time), convert(EasingDirection.OUT, time), time);
-					case OUT:
-						return func.calc(1 - time);
-					default:
-						return 0;
-					}
-				} else {
-					System.err.println("Missing easing function.");
-					return 0;
-				}
-			} else {
-				System.err.println("direction is null.");
-				return 0;
-			}
-		}
-	}
-	
-	static EaseHandle newEaseHandler(EaseFunc f) {
-		EaseHandle handler = new EaseHandle();
-		handler.func = f;
-		
-		return handler;
-	}
-	
-	static double exponential(double start, double end, double time, double factor, EasingDirection dir) {
-		if (time != 0) {
-			EaseFunc easer = new EaseFunc() {
-				public double calc(double time) {
-					return Math.pow(time, factor);
-				}
-			};
-			
-			EaseHandle handler = newEaseHandler(easer);
-			
-			return linear(end, start, handler.convert(dir, time));
-		} else {
-			return 0;
-		}
-	}
-	
-	static double square(double start, double end, double time, EasingDirection dir) {
-		return exponential(start, end, time, 2, dir);
-	}
-	
-	static double cubic(double start, double end, double time, EasingDirection dir) {
-		return exponential(start, end, time, 3, dir);
+	public static double lerpLinear(double start, double end, double time) {
+		return start + (end - start) * time;
 	}
 	
 	/**
-	static double alsoNotExponential(double start, double end, double time, double power) {
-		return start; //* (end/start)^((x-a) / (b-a));
+	 * The starting value of the interpolation
+	 */
+	protected double start;
+	
+	/**
+	 * The ending value of the interpolation
+	 */
+	protected double end;
+	
+	/**
+	 * The interpolation time
+	 */
+	protected double time;
+
+	/**
+	 * Creates an instance of Lerp where the alpha start value, the alpha end value,
+	 * and the interpolation time are all 0
+	 */
+	public Lerp() {
+		this(0, 0, 0);
 	}
 
-	static double notExponential(double start, double end, double time, double power) {
-		return start * Math.pow((end / start), (power / time));
+	/**
+	 * Creates a new object that can be used for interpolation
+	 * 
+	 * @param newStart The initial alpha starting time
+	 * @param newEnd   The initial alpha ending time
+	 * @param newTime  The initial interpolation time
+	 */
+	public Lerp(double newStart, double newEnd, double newTime) {
+		start = newStart;
+		end = newEnd;
+		time = newTime;
 	}
-	*/
+
+	/**
+	 * Returns a calculated value based on the starting value, ending value, and
+	 * current lerp time
+	 * 
+	 * @param d The EasingDirection to use in the calculation
+	 * @return The calculated value
+	 */
+	public double calculate(EasingDirection d) {
+		switch (d) {
+		case IN:
+			return calculateIn();
+		case OUT:
+			return calculateOut();
+		case IN_OUT:
+			return calculateInOut();
+		}
+
+		return 0;
+	}
+
+	/**
+	 * 
+	 * @return The current interpolation time
+	 */
+	public double getTime() {
+		return time;
+	}
+
+	/**
+	 * Sets the interpolation time
+	 * 
+	 * @param newTime The new interpolation time
+	 */
+	public void setTime(double newTime) {
+		time = newTime;
+	}
+	
+	
+	/**
+	 * 
+	 * @return The starting value of the interpolation
+	 */
+	public double getStart() {
+		return start;
+	}
+	
+	/**
+	 * Sets the starting value of the interpolation
+	 * 
+	 * @param newStart The new starting value
+	 */
+	public void setStart(double newStart) {
+		start = newStart;
+	}
+	
+	/**
+	 * 
+	 * @return The ending value of the interpolation
+	 */
+	public double getEnd() {
+		return end;
+	}
+	
+	/**
+	 * Sets the ending value of the interpolation
+	 * @param newEnd The new ending value
+	 */
+	public void setEnd(double newEnd) {
+		end = newEnd;
+	}
+
+	/**
+	 * 
+	 * @return The interpolated value if the animation is supposed to speed up as
+	 *         the animation progresses
+	 */
+	public double calculateIn() {
+		return 0;
+	}
+
+	/**
+	 * 
+	 * @return The interpolated value if the animation is supposed to slow down as
+	 *         the animation progresses
+	 */
+	public double calculateOut() {
+		return 0;
+	}
+
+	/**
+	 * 
+	 * @return The interpolated value if the animation is supposed to speed up as the
+	 *         animation goes from the beginning to the halfway point, then slow
+	 *         down as it goes from the halfway point to the end
+	 */
+	public double calculateInOut() {
+		return 0;
+	}
 }

@@ -1,15 +1,15 @@
-package com.uthedev.animator.easing.style;
+package com.uthedev.animator.style;
 
-import com.uthedev.animator.easing.BaseEasingStyle;
+import com.uthedev.animator.Lerp;
 
-public class Linear extends BaseEasingStyle {
+public class Linear extends Lerp {
 	public Linear(double start, double end, double time) {
 		super(start, end, time);
 	}
 	
 	@Override
 	public double calculateIn() {
-		return start + (end - start) * time;
+		return lerpLinear(start, end, time);
 	}
 	
 	@Override
