@@ -1,4 +1,4 @@
 # animator
 A Java library for animating numeric values
 
-This is under heavy development.
+This is still under early development.
