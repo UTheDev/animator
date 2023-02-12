@@ -1,4 +1,4 @@
-package com.uthedev.animator;
+package com.uthedev.animator.old;
 
 /**
  * This is the base class for numeric interpolation based on easing styles such

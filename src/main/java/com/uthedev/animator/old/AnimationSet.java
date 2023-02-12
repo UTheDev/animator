@@ -1,10 +1,10 @@
-package com.uthedev.animator;
+package com.uthedev.animator.old;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import com.uthedev.animator.signals.OnStep;
+import com.uthedev.animator.old.signals.OnStep;
 
 /**
  * For the interpolation of multiple values at the same time.

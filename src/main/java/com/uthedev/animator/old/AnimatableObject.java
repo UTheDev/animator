@@ -1,4 +1,4 @@
-package com.uthedev.animator;
+package com.uthedev.animator.old;
 
 /**
  * An interface that can be implemented to give objects the ability to animate

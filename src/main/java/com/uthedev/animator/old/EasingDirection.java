@@ -1,4 +1,4 @@
-package com.uthedev.animator;
+package com.uthedev.animator.old;
 
 /**
  * Represents easing style direction.

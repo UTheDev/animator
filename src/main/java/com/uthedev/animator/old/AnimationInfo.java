@@ -1,4 +1,4 @@
-package com.uthedev.animator;
+package com.uthedev.animator.old;
 
 /**
  * Provides the information needed by the animator methods.

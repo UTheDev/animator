@@ -1,6 +1,6 @@
-package com.uthedev.animator.style;
+package com.uthedev.animator.old.style;
 
-import com.uthedev.animator.Lerp;
+import com.uthedev.animator.old.Lerp;
 
 public class Linear extends Lerp {
 	public Linear(double start, double end, double time) {

@@ -1,11 +1,11 @@
-package com.uthedev.animator;
+package com.uthedev.animator.old;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import com.uthedev.animator.signals.*;
+import com.uthedev.animator.old.signals.*;
 
 /**
  * The base class for the animator objects.

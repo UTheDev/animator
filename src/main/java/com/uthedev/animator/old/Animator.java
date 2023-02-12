@@ -1,4 +1,4 @@
-package com.uthedev.animator;
+package com.uthedev.animator.old;
 
 /**
  * The class used to animate stuff.
