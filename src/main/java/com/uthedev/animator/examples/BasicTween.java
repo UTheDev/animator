@@ -1,10 +1,10 @@
 package com.uthedev.animator.examples;
 
-import com.uthedev.animator.Tween;
+import com.uthedev.animator.Interpolation;
 
 public class BasicTween {
     public static void main(String[] args) {
-        Tween tween = new Tween(1, 5, 0.5) {
+        Interpolation tween = new Interpolation(1, 5, 0.5) {
             public double calculate() {
                 return getStart() + (getEnd() - getStart()) * getTime(); // linear interpolation
             }

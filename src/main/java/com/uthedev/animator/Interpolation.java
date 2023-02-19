@@ -1,12 +1,12 @@
 package com.uthedev.animator;
 
 /**
- * This class is responsible for handling one tween (also known as an animation)
+ * This class is responsible for handling one interpolation
  * per instance.
  * 
  * @author UTheDev
  */
-public class Tween {
+public class Interpolation {
     private double time;
 
     // whatever results from the calculate() method
@@ -25,7 +25,7 @@ public class Tween {
     /**
      * Constructs a Tween where start, end, and time are all 0.
      */
-    public Tween() {
+    public Interpolation() {
         this(0, 0, 0);
     }
 
@@ -36,7 +36,7 @@ public class Tween {
      * @param initEnd   The initial ending time.
      * @param initTime  The initial alpha time.
      */
-    public Tween(double initStart, double initEnd, double initTime) {
+    public Interpolation(double initStart, double initEnd, double initTime) {
         start = initStart;
         end = initEnd;
         setTime(initTime);
@@ -85,7 +85,7 @@ public class Tween {
     /**
      * 
      * @return The last calculated value.
-    */
+     */
     public double getValue() {
         return value;
     }
