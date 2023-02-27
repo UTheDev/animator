@@ -1,12 +1,12 @@
 package com.uthedev.animator;
 
 /**
- * This class is responsible for handling one interpolation
+ * This class is responsible for handling one linear interpolation
  * per instance.
  * 
  * @author UTheDev
  */
-public class Interpolation {
+public class Lerp {
     private double time;
 
     // whatever results from the calculate() method
@@ -25,7 +25,7 @@ public class Interpolation {
     /**
      * Constructs a Tween where start, end, and time are all 0.
      */
-    public Interpolation() {
+    public Lerp() {
         this(0, 0, 0);
     }
 
@@ -36,7 +36,7 @@ public class Interpolation {
      * @param initEnd   The initial ending time.
      * @param initTime  The initial alpha time.
      */
-    public Interpolation(double initStart, double initEnd, double initTime) {
+    public Lerp(double initStart, double initEnd, double initTime) {
         start = initStart;
         end = initEnd;
         setTime(initTime);

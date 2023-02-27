@@ -24,11 +24,11 @@ public class Easing {
         return start + (end - start) * time;
     }
 
-    public static double inQuad(double start, double end, double time) {
-        return Math.pow(1 - linear(start, end, time), 2);
+    public static double inQuad(double time) {
+        return Math.pow(time, 2);
     }
 
     public static double outQuad(double start, double end, double time) {
-        return 1 - inQuad(start, end, time);
+        return 1 - Math.pow(1 - time, 2);
     }
 }
